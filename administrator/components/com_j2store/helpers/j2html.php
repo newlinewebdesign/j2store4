@@ -875,7 +875,9 @@ class J2Html
                 $content = self::getSource($value);
                 $value = $content->source;
             }
-            $editor = self::getEditor($editor_type);
+            $config = Joomla\CMS\Factory::getApplication()->getConfig();
+	        $defaultEditor = $config->get('editor');
+	        $editor = Joomla\CMS\Editor\Editor::getInstance($defaultEditor);
             $html = $editor->display( $name,  $value, $width, $height, $cols, $rows,false,$id,null,null,$options) ;
         } elseif ($type == 'filelist'){
             $file_options = array(
